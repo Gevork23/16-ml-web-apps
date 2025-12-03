@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ML API Демонстрация</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; }
+        .demo { background: #f0f8ff; padding: 20px; border-radius: 10px; margin: 20px 0; }
+        .code { background: #f8f9fa; padding: 10px; border-radius: 5px; font-family: monospace; }
+        button { padding: 10px 20px; background: #28a745; color: white; border: none; cursor: pointer; }
+        .result { padding: 15px; background: #d4edda; border-radius: 5px; margin-top: 10px; }
+    </style>
+</head>
+<body>
+    <h1>��� Демонстрация ML API на Julia</h1>
+    
+    <div class="demo">
+        <h2>��� Проверка API</h2>
+        <p>Убедитесь что сервер запущен: <code>julia --project=. working_final_api.jl</code></p>
+        
+        <h3>1. Проверка здоровья:</h3>
+        <div class="code">curl http://localhost:8080/health</div>
+        
+        <h3>2. Предсказание:</h3>
+        <div class="code">
+curl -X POST http://localhost:8080/predict \<br>
+  -H "Content-Type: application/json" \<br>
+  -d '{"features": [0.5, 0.3, 0.8]}'
+        </div>
+        
+        <h3>3. Веб-интерфейс:</h3>
+        <p>Откройте: <a href="http://localhost:8080" target="_blank">http://localhost:8080</a></p>
+    </div>
+    
+    <div class="demo">
+        <h2>��� Примеры результатов</h2>
+        
+        <h3>Health check ответ:</h3>
+        <div class="code">
+{
+  "status": "healthy",
+  "model": "DecisionTree",
+  "accuracy": "96.7%",
+  "timestamp": "2025-12-03T20:29:15.953"
+}
+        </div>
+        
+        <h3>Prediction ответ:</h3>
+        <div class="code">
+{
+  "features": [0.5, 0.3, 0.8],
+  "success": true,
+  "prediction": 0,
+  "timestamp": "2025-12-03T20:29:17.744"
+}
+        </div>
+    </div>
+    
+    <div class="demo">
+        <h2>��� Быстрый старт</h2>
+        
+        <h3>Windows (.bat файлы):</h3>
+        <ul>
+            <li><code>install.bat</code> - Установка зависимостей</li>
+            <li><code>train.bat</code> - Обучение модели</li>
+            <li><code>run.bat</code> - Запуск сервера</li>
+            <li><code>test.bat</code> - Тестирование API</li>
+            <li><code>all.bat</code> - Всё сразу</li>
+        </ul>
+        
+        <h3>Командная строка:</h3>
+        <div class="code">
+# В папке проекта:
+cd 16-ml-web-apps
+
+# 1. Установка
+julia --project=. setup.jl
+
+# 2. Обучение
+julia --project=. simple_model_fixed.jl
+
+# 3. Запуск сервера
+julia --project=. working_final_api.jl
+
+# 4. Тестирование (в другом окне)
+curl http://localhost:8080/health
+        </div>
+    </div>
+    
+    <div class="demo">
+        <h2>��� Структура проекта</h2>
+        <pre>
+16-ml-web-apps/
+├── working_final_api.jl     # Основной API сервер
+├── simple_model_fixed.jl    # Обучение модели
+├── decision_tree_model.jls  # Сохраненная модель (96.7%)
+├── setup.jl                # Установка зависимостей
+├── install.bat             # Windows установка
+├── train.bat              # Windows обучение
+├── run.bat                # Windows запуск
+├── test.bat               # Windows тестирование
+├── README.md              # Документация
+└── demo.html              # Эта страница
+        </pre>
+    </div>
+    
+    <footer>
+        <p>© 2025 Лабораторная работа 16: Разработка интерфейсов для ML на Julia</p>
+        <p>Проект полностью рабочий! Точность модели: <strong>96.7%</strong></p>
+    </footer>
+</body>
+</html>
