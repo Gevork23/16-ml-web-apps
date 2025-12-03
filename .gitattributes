@@ -1,0 +1,17 @@
+# Установить нормализацию конца строк
+*.jl text eol=lf
+*.toml text eol=lf
+*.md text eol=lf
+*.py text eol=lf
+*.js text eol=lf
+*.html text eol=lf
+*.css text eol=lf
+*.sh text eol=lf
+*.bat text eol=crlf
+
+# Бинарные файлы
+*.jls binary
+*.docx binary
+*.pdf binary
+*.jpg binary
+*.png binary
